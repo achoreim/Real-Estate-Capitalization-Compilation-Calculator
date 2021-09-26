@@ -19,7 +19,7 @@ url = "https://us-real-estate.p.rapidapi.com/for-sale"
 querystring = {"offset":"0","limit":"200","state_code":state_code,"city":city,"sort":"price_min"}
 
 headers = {
-    'x-rapidapi-key': "e2ab4d4f1bmshbbf2eced97064d3p1ebc10jsncabed2498231",
+    'x-rapidapi-key': #rapid-api-key(confidential),
     'x-rapidapi-host': "us-real-estate.p.rapidapi.com"
     }
 
@@ -33,18 +33,14 @@ price = [listing["list_price"] for listing in listings]
 prices = [float(0 if i is None else i) for i in price]
 
 beds = [listing["description"]["beds"] for listing in listings]
-#beds = [float(0 if i is None else i) for i in bed]
 
 baths = [listing["description"]["baths"] for listing in listings]
-#baths = [float(0 if i is None else i) for i in bath]
 
 square_feet = [listing["description"]["sqft"] for listing in listings]
-#square_feet = [float(0 if i is None else i) for i in squareFeet]
 
 street_address = [listing["location"]["address"]["line"] for listing in listings]
 
 postal_code = [listing["location"]["address"]["postal_code"] for listing in listings]
-#postal_code = [float(i) for i in postalCode]
 
 property_id = [listing["property_id"] for listing in listings]
 
@@ -54,9 +50,7 @@ for x in range(0, len(prices)):
     homes2.append(homes)
 
 def rent_estimater(bds, bths, sqft, zip, property_id):
-    # call_rent1()
-    # make sure to compare ren_listings if less than 200, dont call "call_rent2()"
-    # call_rent2()
+    # some cool machine learning algorithm which calls getRent() from real estate api, in order to estimate reasonable rent
     return 5
 
 def caprate_calculator(price, tax, rent):
@@ -74,7 +68,7 @@ def call_rent1():
     url = "https://us-real-estate.p.rapidapi.com/for-rent"
     querystring = {"city":city,"state_code":state_code,"limit":"200","sort":"lowest_price"}
     headers = {
-        'x-rapidapi-key': "e2ab4d4f1bmshbbf2eced97064d3p1ebc10jsncabed2498231",
+        'x-rapidapi-key': #rapid-api-key(confidential),
         'x-rapidapi-host': "us-real-estate.p.rapidapi.com"
     }
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -84,7 +78,7 @@ def call_rent2():
     url = "https://us-real-estate.p.rapidapi.com/for-rent"
     querystring = {"city":city,"state_code":state_code,"limit":"200","sort":"highest_price"}
     headers = {
-        'x-rapidapi-key': "e2ab4d4f1bmshbbf2eced97064d3p1ebc10jsncabed2498231",
+        'x-rapidapi-key': #rapid-api-key(confidential),
         'x-rapidapi-host': "us-real-estate.p.rapidapi.com"
     }
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -102,19 +96,6 @@ for x in range(0, len(homes2)):
     homes3.append(var)
 
 print (homes3)
-
-url = "https://email-sender1.p.rapidapi.com/"
-
-querystring = {"txt_msg":homes3,"to":"achoreim@icloud.com","from":"Ahmad's Automated Message","subject":"Real Estate Cap Rate Calculator","html_msg":"<html><body><b>test of the body</b></body></html>"}
-
-headers = {
-    'x-rapidapi-key': "e2ab4d4f1bmshbbf2eced97064d3p1ebc10jsncabed2498231",
-    'x-rapidapi-host': "email-sender1.p.rapidapi.com"
-    }
-
-response = requests.request("POST", url, headers=headers, params=querystring)
-
-print(response.text)
 
 csvheader = ['List Price', 'Beds', 'Baths', 'sqft', 'Adress', 'Zip', 'Tax', 'Property ID', 'Rent', 'Cap Rate']
 
