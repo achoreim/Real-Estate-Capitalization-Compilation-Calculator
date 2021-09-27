@@ -8,3 +8,4 @@ Next Steps:
 - Integrate Zillow's Zestimate feature to create a systemcatic measuring tool which identifies a good deal vs a bad one.
 - Integrate Zillow's rentZestimate to more accurately estimate viable rent prices.
 - Integrate the use of databases to keep track of possible listing changes and recently sold/rented data points for further cap rate estimate accuracy.
+- Combine all variable and data initialization into a singular for loop.
